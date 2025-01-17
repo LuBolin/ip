@@ -1,8 +1,12 @@
+import java.util.Scanner;
+
 public class InnKeeper {
     static final String lineSeparator = "____________________________________________________________";
 
     public static void main(String[] args) {
         printGreetings();
+
+        echoUserInput();
 
         printFarewell();
     }
@@ -22,14 +26,28 @@ public class InnKeeper {
         System.out.println("Hello from\n" + logo);
 
         System.out.println(lineSeparator);
-        System.out.println("Hello! I'm the InnKeeper");
-        System.out.println("What can I do for you?");
+        System.out.println("Greetings! I'm the InnKeeper.");
+        System.out.println("Fancy a beer?");
         System.out.println(lineSeparator);
+        // Print an empty line for better readability of user input
+        System.out.println();
     }
 
     public static void printFarewell() {
         System.out.println(lineSeparator);
-        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println("Farewell, traveller!");
         System.out.println(lineSeparator);
     }
+
+    public static void echoUserInput() {
+        Scanner sc = new Scanner(System.in);
+        String userInput = sc.nextLine();
+        while (!userInput.equals("bye")) {
+            System.out.println(lineSeparator);
+            System.out.println(userInput);
+            System.out.println(lineSeparator);
+            userInput = sc.nextLine();
+        }
+    }
+
 }
