@@ -121,7 +121,9 @@ public class InnKeeper {
 
     static void addToList(Task newTask) throws ListFullException{
         if (UserTaskList.size() >= MAX_LIST_SIZE) {
-            throw new ListFullException("My notebook is full! I can't add any more notes.");
+            String exceptionMessage = "My notebook is full! I can't add any more notes.\n" +
+                    "My old brain can only remember up to " + MAX_LIST_SIZE + " tasks.";
+            throw new ListFullException(exceptionMessage);
         }
         UserTaskList.add(newTask);
         System.out.println(LINE_SEPARATOR);
