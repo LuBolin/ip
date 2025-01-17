@@ -51,7 +51,6 @@ public class InnKeeper {
                     System.out.println(LINE_SEPARATOR);
                     System.out.println(e.getMessage());
                     System.out.println(LINE_SEPARATOR);
-                    System.out.println();
                 }
             } else { // Add a new task
                 try {
@@ -61,9 +60,9 @@ public class InnKeeper {
                     System.out.println(LINE_SEPARATOR);
                     System.out.println(e.getMessage());
                     System.out.println(LINE_SEPARATOR);
-                    System.out.println();
                 }
             }
+            System.out.println();
         }
     }
 
@@ -129,7 +128,6 @@ public class InnKeeper {
         System.out.println("Got it! Adding task: " + newTask);
         System.out.println("Now you have " + UserTaskList.size() + " tasks in the list.");
         System.out.println(LINE_SEPARATOR);
-        System.out.println();
     }
 
     static void printList() {
@@ -142,7 +140,6 @@ public class InnKeeper {
             }
         }
         System.out.println(LINE_SEPARATOR);
-        System.out.println();
     }
 
     static void setDone(int index, boolean isDone) throws IndexOutOfBoundsException {
