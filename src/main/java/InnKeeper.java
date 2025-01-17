@@ -22,6 +22,7 @@ public class InnKeeper {
         String userInput;
 
         String markAndUnmarkRegex = "(mark|unmark) \\d+";
+        String deleteRegex = "delete \\d+";
         while (true) {
             if (!sc.hasNextLine()) { // EOF or input stream closed
                 break;
@@ -52,7 +53,18 @@ public class InnKeeper {
                     System.out.println(e.getMessage());
                     System.out.println(LINE_SEPARATOR);
                 }
-            } else { // Add a new task
+            } else if (userInput.matches(deleteRegex)) {
+                try {
+                    int index = Integer.parseInt(userInput.split(" ")[1]);
+                    index -= 1;
+                    deleteTask(index);
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println(LINE_SEPARATOR);
+                    System.out.println(e.getMessage());
+                    System.out.println(LINE_SEPARATOR);
+                }
+            }
+            else { // Add a new task
                 try {
                     Task newTask = parseInputAsTask(userInput);
                     addToList(newTask);
@@ -112,8 +124,9 @@ public class InnKeeper {
             String exceptionMessage = """
                     I'm sorry, but I don't know what that means.\n
                     Task types: todo, deadline, event.\n
-                    Other commands: list, mark X, unmark X (X is a number).
-                    Or type "bye" to exit.""";
+                    Other commands: list, mark X, unmark X, delete X.\n
+                    (X is the index of the task in the list).\n
+                    If you are leaving, just say "bye".""";
             throw new IllegalArgumentException(exceptionMessage);
         }
         return newTask;
@@ -150,6 +163,18 @@ public class InnKeeper {
         }
         Task task = UserTaskList.get(index);
         task.setDone(isDone);
+    }
+
+    static void deleteTask(int index) throws IndexOutOfBoundsException {
+        if (index < 0 || index >= UserTaskList.size()) {
+            throw new IndexOutOfBoundsException("There is no task at index " + (index + 1) + ".");
+        }
+        Task removedTask = UserTaskList.remove(index);
+        System.out.println(LINE_SEPARATOR);
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(removedTask);
+        System.out.println("Now you have " + UserTaskList.size() + " tasks in the list.");
+        System.out.println(LINE_SEPARATOR);
     }
 
     // Fixed Messages
