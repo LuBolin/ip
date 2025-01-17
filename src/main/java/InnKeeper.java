@@ -126,7 +126,8 @@ public class InnKeeper {
         }
         UserTaskList.add(newTask);
         System.out.println(LINE_SEPARATOR);
-        System.out.println("added: " + newTask);
+        System.out.println("Got it! Adding task: " + newTask);
+        System.out.println("Now you have " + UserTaskList.size() + " tasks in the list.");
         System.out.println(LINE_SEPARATOR);
         System.out.println();
     }
