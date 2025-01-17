@@ -23,11 +23,6 @@ public class Task {
 
     @Override
     public String toString() {
-//        String typeString = switch (type) {
-//            case TODO -> "[T]";
-//            case DEADLINE -> "[D]";
-//            case EVENT -> "[E]";
-//        };
         String typeString = "[" + type.name().charAt(0) + "]";
         String doneString = "[" + (isDone ? "X" : " ") + "]";
         String nameString = name;

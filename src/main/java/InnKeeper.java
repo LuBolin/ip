@@ -23,6 +23,9 @@ public class InnKeeper {
 
         String markAndUnmarkRegex = "(mark|unmark) \\d+";
         while (true) {
+            if (!sc.hasNextLine()) { // EOF or input stream closed
+                break;
+            }
             userInput = sc.nextLine();
             // cannot simply use switch case here, due to commands like "'"mark X"
             if (userInput.equals("bye")) {
