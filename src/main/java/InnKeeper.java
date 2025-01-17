@@ -22,13 +22,13 @@ public class InnKeeper {
         System.out.println("Hello from\n" + logo);
 
         System.out.println(lineSeparator);
-        System.out.println("Hello! I'm InnKeeper");
+        System.out.println("Hello! I'm the InnKeeper");
         System.out.println("What can I do for you?");
         System.out.println(lineSeparator);
     }
 
-    // function to end the program
     public static void printFarewell() {
+        System.out.println(lineSeparator);
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println(lineSeparator);
     }
