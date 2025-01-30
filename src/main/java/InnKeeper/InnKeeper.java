@@ -1,5 +1,8 @@
 package InnKeeper;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,14 +10,22 @@ import java.util.Scanner;
 public class InnKeeper {
     static final String LINE_SEPARATOR = "____________________________________________________________";
     static final int MAX_LIST_SIZE = 100;
+    static final String STORED_TASKS_FILE_PATH = "data/innkeeper.txt"; // Hardcoded Unix Path
     static List<Task> userTasks  = new ArrayList<>(MAX_LIST_SIZE);
+    static boolean isActive = false;
 
     public static void main(String[] args) {
+        readFromFile();
+
         printGreetings();
+
+        isActive = true;
 
         handleUserInput();
 
         printFarewell();
+
+        writeToFile();
     }
 
 
@@ -140,7 +151,10 @@ public class InnKeeper {
                     "My old brain can only remember up to " + MAX_LIST_SIZE + " tasks.";
             throw new ListFullException(exceptionMessage);
         }
-        userTasks .add(newTask);
+        userTasks.add(newTask);
+        if (! isActive){
+            return;
+        }
         System.out.println(LINE_SEPARATOR);
         System.out.println("Got it! Adding task: " + newTask);
         System.out.println("Now you have " + userTasks .size() + " tasks in the list.");
@@ -178,6 +192,69 @@ public class InnKeeper {
         System.out.println("Now you have " + userTasks .size() + " tasks in the list.");
         System.out.println(LINE_SEPARATOR);
     }
+
+    // File IO
+    static void readFromFile() {
+        // check if file exists, if not just skip
+        try {
+            java.io.File file = new java.io.File(STORED_TASKS_FILE_PATH);
+            if (!file.exists()) {
+                return;
+            }
+            BufferedReader reader = new BufferedReader(new FileReader(STORED_TASKS_FILE_PATH));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(" \\| ");
+                // Type | isDone | Description | Other fields
+                String userInput;
+                switch (parts[0]) {
+                case "T" -> userInput = "todo " + parts[2];
+                case "D" -> userInput = "deadline " + parts[2] + " /by " + parts[3];
+                case "E" -> userInput = "event " + parts[2] + " /from " + parts[3] + " /to " + parts[4];
+                default -> {continue;}
+                }
+                Task newTask = parseInputAsTask(userInput);
+                if (parts[1].equals("1")) {
+                    newTask.setDone(true);
+                }
+                addToList(newTask);
+            }
+        } catch (ListFullException e) {
+            System.out.println("List is full when reading saved file.\n" + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error reading from file: " + e.getMessage());
+        }
+    }
+
+    static void writeToFile(){
+        // Type | isDone | Description | Other fields
+        // check if file exists, if not create it
+        // then, write to file
+        try {
+            java.io.File file = new java.io.File(STORED_TASKS_FILE_PATH);
+            if (!file.exists()) {
+                boolean success = file.getParentFile().mkdirs();
+                if (success){
+                    success = file.createNewFile();
+                }
+                if (!success) {
+                    System.out.println("Failed to write to file " + STORED_TASKS_FILE_PATH);
+                    System.out.println("File not found and could not creat it.");
+                    return;
+                }
+            }
+            java.io.PrintWriter writer = new java.io.PrintWriter(STORED_TASKS_FILE_PATH);
+            for (Task task : userTasks) {
+                writer.println(task.toFileString());
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
+
+    }
+
+
 
     // Fixed Messages
     static void printGreetings() {

@@ -16,4 +16,9 @@ public class EventTask extends Task {
         String datetimeString = "(from: " + startDatetime + " to " + endDatetime + ")";
         return defaultString + " " + datetimeString;
     }
+
+    @Override
+    public String toFileString() {
+        return super.toFileString(new String[] {startDatetime, endDatetime});
+    }
 }
