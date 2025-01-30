@@ -12,11 +12,14 @@ public class InnKeeper {
     static final int MAX_LIST_SIZE = 100;
     static final String STORED_TASKS_FILE_PATH = "data/innkeeper.txt"; // Hardcoded Unix Path
     static List<Task> userTasks  = new ArrayList<>(MAX_LIST_SIZE);
+    static boolean isActive = false;
 
     public static void main(String[] args) {
         readFromFile();
 
         printGreetings();
+
+        isActive = true;
 
         handleUserInput();
 
@@ -148,7 +151,10 @@ public class InnKeeper {
                     "My old brain can only remember up to " + MAX_LIST_SIZE + " tasks.";
             throw new ListFullException(exceptionMessage);
         }
-        userTasks .add(newTask);
+        userTasks.add(newTask);
+        if (! isActive){
+            return;
+        }
         System.out.println(LINE_SEPARATOR);
         System.out.println("Got it! Adding task: " + newTask);
         System.out.println("Now you have " + userTasks .size() + " tasks in the list.");
