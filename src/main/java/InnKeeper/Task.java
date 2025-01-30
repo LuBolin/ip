@@ -30,4 +30,20 @@ public class Task {
         String nameString = name;
         return typeString + doneString + " " + nameString;
     }
+
+    public String toFileString() {
+        return toFileString(new String[0]);
+    }
+
+    public String toFileString(String[] information) {
+        String typeString = (type.name().charAt(0) + "").toUpperCase();
+        String doneString = isDone ? "1" : "0";
+        String nameString = name;
+        StringBuilder sb = new StringBuilder();
+        sb.append(typeString).append(" | ").append(doneString).append(" | ").append(nameString);
+        for (String info : information) {
+            sb.append(" | ").append(info);
+        }
+        return sb.toString();
+    }
 }
