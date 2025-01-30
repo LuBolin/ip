@@ -1,8 +1,10 @@
+package InnKeeper;
+
 public class DeadlineTask extends Task {
     private String deadline;
 
     public DeadlineTask(String name, String deadline) {
-        super(name, TASK_TYPE.DEADLINE);
+        super(name, Task.TASK_TYPE.DEADLINE);
         this.deadline = deadline;
     }
 

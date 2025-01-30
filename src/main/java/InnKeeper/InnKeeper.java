@@ -1,3 +1,5 @@
+package InnKeeper;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -5,7 +7,7 @@ import java.util.Scanner;
 public class InnKeeper {
     static final String LINE_SEPARATOR = "____________________________________________________________";
     static final int MAX_LIST_SIZE = 100;
-    static List<Task> UserTaskList = new ArrayList<>(MAX_LIST_SIZE);
+    static List<Task> userTasks  = new ArrayList<>(MAX_LIST_SIZE);
 
     public static void main(String[] args) {
         printGreetings();
@@ -46,7 +48,7 @@ public class InnKeeper {
                     } else {
                         System.out.println("Ahh, I see. It's no longer marked as done:");
                     }
-                    System.out.println(UserTaskList.get(index));
+                    System.out.println(userTasks .get(index));
                     System.out.println(LINE_SEPARATOR);
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println(LINE_SEPARATOR);
@@ -133,47 +135,47 @@ public class InnKeeper {
     }
 
     static void addToList(Task newTask) throws ListFullException{
-        if (UserTaskList.size() >= MAX_LIST_SIZE) {
+        if (userTasks .size() >= MAX_LIST_SIZE) {
             String exceptionMessage = "My notebook is full! I can't add any more notes.\n" +
                     "My old brain can only remember up to " + MAX_LIST_SIZE + " tasks.";
             throw new ListFullException(exceptionMessage);
         }
-        UserTaskList.add(newTask);
+        userTasks .add(newTask);
         System.out.println(LINE_SEPARATOR);
         System.out.println("Got it! Adding task: " + newTask);
-        System.out.println("Now you have " + UserTaskList.size() + " tasks in the list.");
+        System.out.println("Now you have " + userTasks .size() + " tasks in the list.");
         System.out.println(LINE_SEPARATOR);
     }
 
     static void printList() {
         System.out.println(LINE_SEPARATOR);
-        if (UserTaskList.isEmpty()) {
+        if (userTasks .isEmpty()) {
             System.out.println("You have no tasks in your list.");
         } else {
-            for (int i = 0; i < UserTaskList.size(); i++) {
-                System.out.println((i + 1) + ". " + UserTaskList.get(i));
+            for (int i = 0; i < userTasks .size(); i++) {
+                System.out.println((i + 1) + ". " + userTasks .get(i));
             }
         }
         System.out.println(LINE_SEPARATOR);
     }
 
     static void setDone(int index, boolean isDone) throws IndexOutOfBoundsException {
-        if (index < 0 || index >= UserTaskList.size()) {
+        if (index < 0 || index >= userTasks .size()) {
             throw new IndexOutOfBoundsException("There is no task at index " + (index + 1) + ".");
         }
-        Task task = UserTaskList.get(index);
+        Task task = userTasks .get(index);
         task.setDone(isDone);
     }
 
     static void deleteTask(int index) throws IndexOutOfBoundsException {
-        if (index < 0 || index >= UserTaskList.size()) {
+        if (index < 0 || index >= userTasks .size()) {
             throw new IndexOutOfBoundsException("There is no task at index " + (index + 1) + ".");
         }
-        Task removedTask = UserTaskList.remove(index);
+        Task removedTask = userTasks .remove(index);
         System.out.println(LINE_SEPARATOR);
         System.out.println("Noted. I've removed this task:");
         System.out.println(removedTask);
-        System.out.println("Now you have " + UserTaskList.size() + " tasks in the list.");
+        System.out.println("Now you have " + userTasks .size() + " tasks in the list.");
         System.out.println(LINE_SEPARATOR);
     }
 

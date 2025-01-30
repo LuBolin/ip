@@ -1,3 +1,5 @@
+package InnKeeper;
+
 public class Task {
     public enum TASK_TYPE {
         TODO, DEADLINE, EVENT
