@@ -109,6 +109,7 @@ public class InnKeeper {
             int substringStart = 9; // length of command
             String exceptionMessage = "A deadline task must have a description and a deadline datetime.\n"
                     + "Format: \"deadline description \"/by deadline\".";
+            exceptionMessage += "\nInput dates in " + Task.INPUT_DATE_FORMAT + " to be parsed for better display.";
             if (userInput.length() < substringStart) {
                 throw new IllegalArgumentException(exceptionMessage);
             }
@@ -121,6 +122,7 @@ public class InnKeeper {
             int substringStart = 6; // length of command
             String exceptionMessage = "An event task must have a description, a start and an end datetime.\n"
                     + "Format: \"event description /from start /to end\".";
+            exceptionMessage += "\nInput dates in " + Task.INPUT_DATE_FORMAT + " to be parsed for better display.";
             if (userInput.length() < substringStart) {
                 throw new IllegalArgumentException(exceptionMessage);
             }
@@ -134,12 +136,20 @@ public class InnKeeper {
             }
             newTask = new EventTask(parts[0], parts2[0], parts2[1]);
         } else { // Invalid commands
-            String exceptionMessage = """
-                    I'm sorry, but I don't know what that means.\n
-                    Task types: todo, deadline, event.\n
-                    Other commands: list, mark X, unmark X, delete X.\n
-                    (X is the index of the task in the list).\n
-                    If you are leaving, just say "bye".""";
+            String inputDateFormat = Task.INPUT_DATE_FORMAT;
+            String exceptionMessage = String.format("""
+                I'm sorry, but I don't know what that means.
+                
+                Task types: todo, deadline, event.
+                Input dates in %s to be parsed for better display.
+                
+                Other commands: list, mark X, unmark X, delete X.
+                (X is the index of the task in the list).
+                
+                If you are leaving, just say "bye."
+                """, inputDateFormat);
+            System.out.println(exceptionMessage);
+
             throw new IllegalArgumentException(exceptionMessage);
         }
         return newTask;

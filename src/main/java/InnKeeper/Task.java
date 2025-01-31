@@ -7,7 +7,9 @@ public class Task {
         TODO, DEADLINE, EVENT
     }
 
-    static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("MMM d yyyy");
+    static final String INPUT_DATE_FORMAT = "yyyy-mm-dd";
+    static final DateTimeFormatter OUTPUT_DATE_FORMATTER = DateTimeFormatter.ofPattern("MMM d yyyy");
+    static final DateTimeFormatter INPUT_DATE_PARSER = DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT);
 
     String name;
     boolean isDone;

@@ -30,12 +30,12 @@ public class EventTask extends Task {
         String startDateFormattedString;
         String endDateFormattedString;
         if (startDateLocalDate != null) {
-            startDateFormattedString = startDateLocalDate.format(Task.DATE_FORMATTER);
+            startDateFormattedString = startDateLocalDate.format(Task.OUTPUT_DATE_FORMATTER);
         } else {
             startDateFormattedString = startDateString;
         }
         if (endDateLocalDate != null) {
-            endDateFormattedString = endDateLocalDate.format(Task.DATE_FORMATTER);
+            endDateFormattedString = endDateLocalDate.format(Task.OUTPUT_DATE_FORMATTER);
         } else {
             endDateFormattedString = endDateString;
         }

@@ -1,18 +1,18 @@
 package InnKeeper;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 public class DeadlineTask extends Task {
     private String deadlineString;
-    private LocalDate deadlineLocalDate;
+    private LocalDateTime deadlineLocalDate;
 
     public DeadlineTask(String name, String deadline) {
         super(name, Task.TASK_TYPE.DEADLINE);
-        System.out.println(deadline);
         this.deadlineString = deadline;
         try {
-            this.deadlineLocalDate = LocalDate.parse(deadline);
+            this.deadlineLocalDate = LocalDateTime.parse(deadline);
         } catch (DateTimeParseException e) {
             this.deadlineLocalDate = null;
         }
@@ -23,7 +23,7 @@ public class DeadlineTask extends Task {
         String defaultString = super.toString();
         String deadlineFormattedString;
         if (deadlineLocalDate != null) {
-            deadlineFormattedString = "(by: " + deadlineLocalDate.format(Task.DATE_FORMATTER) + ")";
+            deadlineFormattedString = "(by: " + deadlineLocalDate.format(Task.OUTPUT_DATE_FORMATTER) + ")";
         } else {
             deadlineFormattedString = "(by: " + deadlineString + ")";
         }
