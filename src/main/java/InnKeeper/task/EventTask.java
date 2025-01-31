@@ -1,4 +1,4 @@
-package InnKeeper;
+package innkeeper.task;
 
 import java.time.LocalDate;
 
@@ -13,12 +13,12 @@ public class EventTask extends Task {
         this.startDateString = startDatetime;
         this.endDateString = endDatetime;
         try {
-            this.startDateLocalDate = LocalDate.parse(startDatetime);
+            this.startDateLocalDate = LocalDate.parse(startDatetime, INPUT_DATE_PARSER);
         } catch (Exception e) {
             this.startDateLocalDate = null;
         }
         try {
-            this.endDateLocalDate = LocalDate.parse(endDatetime);
+            this.endDateLocalDate = LocalDate.parse(endDatetime, INPUT_DATE_PARSER);
         } catch (Exception e) {
             this.endDateLocalDate = null;
         }
