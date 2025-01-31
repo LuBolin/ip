@@ -1,24 +1,61 @@
 package InnKeeper;
 
+import java.time.LocalDate;
+
 public class EventTask extends Task {
-    private String startDatetime;
-    private String endDatetime;
+    private String startDateString;
+    private String endDateString;
+    private LocalDate startDateLocalDate;
+    private LocalDate endDateLocalDate;
 
     public EventTask(String name, String startDatetime, String endDatetime) {
         super(name, Task.TASK_TYPE.EVENT);
-        this.startDatetime = startDatetime;
-        this.endDatetime = endDatetime;
+        this.startDateString = startDatetime;
+        this.endDateString = endDatetime;
+        try {
+            this.startDateLocalDate = LocalDate.parse(startDatetime);
+        } catch (Exception e) {
+            this.startDateLocalDate = null;
+        }
+        try {
+            this.endDateLocalDate = LocalDate.parse(endDatetime);
+        } catch (Exception e) {
+            this.endDateLocalDate = null;
+        }
     }
 
     @Override
     public String toString() {
         String defaultString = super.toString();
-        String datetimeString = "(from: " + startDatetime + " to " + endDatetime + ")";
+        String startDateFormattedString;
+        String endDateFormattedString;
+        if (startDateLocalDate != null) {
+            startDateFormattedString = startDateLocalDate.format(Task.OUTPUT_DATE_FORMATTER);
+        } else {
+            startDateFormattedString = startDateString;
+        }
+        if (endDateLocalDate != null) {
+            endDateFormattedString = endDateLocalDate.format(Task.OUTPUT_DATE_FORMATTER);
+        } else {
+            endDateFormattedString = endDateString;
+        }
+        String datetimeString = "(from: " + startDateFormattedString + " to: " + endDateFormattedString + ")";
         return defaultString + " " + datetimeString;
     }
 
     @Override
     public String toFileString() {
-        return super.toFileString(new String[] {startDatetime, endDatetime});
+        String[] informationArray = new String[2];
+        if (startDateLocalDate != null) {
+            informationArray[0] = startDateLocalDate.toString();
+        } else {
+            informationArray[0] = startDateString;
+        }
+        if (endDateLocalDate != null) {
+            informationArray[1] = endDateLocalDate.toString();
+        } else {
+            informationArray[1] = endDateString;
+        }
+        return super.toFileString(informationArray);
     }
 }
