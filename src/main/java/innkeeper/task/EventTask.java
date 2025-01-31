@@ -2,12 +2,22 @@ package innkeeper.task;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a task that is an event.
+ */
 public class EventTask extends Task {
     private String startDateString;
     private String endDateString;
     private LocalDate startDateLocalDate;
     private LocalDate endDateLocalDate;
 
+    /**
+     * Constructor for EventTask.
+     *
+     * @param name Name / Description of the task.
+     * @param startDatetime Start date and time of the event.
+     * @param endDatetime End date and time of the event.
+     */
     public EventTask(String name, String startDatetime, String endDatetime) {
         super(name, Task.TASK_TYPE.EVENT);
         this.startDateString = startDatetime;

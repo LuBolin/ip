@@ -3,10 +3,19 @@ package innkeeper.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a task that has a deadline.
+ */
 public class DeadlineTask extends Task {
     private String deadlineString;
     private LocalDate deadlineLocalDate;
 
+    /**
+     * Constructor for DeadlineTask.
+     *
+     * @param name Name / Description of the task.
+     * @param deadline Deadline of the task.
+     */
     public DeadlineTask(String name, String deadline) {
         super(name, Task.TASK_TYPE.DEADLINE);
         this.deadlineString = deadline;
