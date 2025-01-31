@@ -7,6 +7,9 @@ import innkeeper.task.DeadlineTask;
 import innkeeper.task.EventTask;
 import innkeeper.task.Task;
 
+/**
+ * Represents a command to add an event task.
+ */
 public class EventCommand extends Command {
     private EventTask task;
 

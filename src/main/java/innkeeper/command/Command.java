@@ -4,6 +4,11 @@ import innkeeper.Storage;
 import innkeeper.TaskList;
 import innkeeper.Ui;
 
+/**
+ * Abstract class for all commands.
+ * Represents a command that can be executed by the user.
+ */
+
 public abstract class Command {
     public enum TerminationType {
         TERMINATE,
@@ -12,6 +17,7 @@ public abstract class Command {
 
     /**
      * Executes the command
+     *
      * @param tasks The list of tasks
      * @param ui The ui object
      * @param storage The storage object
@@ -22,6 +28,7 @@ public abstract class Command {
 
     /**
      * Parses the input string and returns the corresponding Command object
+     *
      * @param input The input string
      * @return Command A Command object
      * @throws Exception If the input string is invalid

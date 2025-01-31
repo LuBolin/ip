@@ -7,6 +7,9 @@ import innkeeper.task.Task;
 
 import java.util.List;
 
+/**
+ * Represents a command to list all tasks.
+ */
 public class ListCommand extends Command {
     @Override
     public TerminationType execute(TaskList tasks, Storage storage, Ui ui) {

@@ -5,6 +5,9 @@ import innkeeper.TaskList;
 import innkeeper.Ui;
 import innkeeper.task.Task;
 
+/**
+ * Represents a command to delete a task.
+ */
 public class DeleteCommand extends Command {
     private int index;
 

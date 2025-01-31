@@ -6,6 +6,9 @@ import innkeeper.Ui;
 import innkeeper.task.Task;
 import innkeeper.task.TodoTask;
 
+/**
+ * Represents a command to add a todo task.
+ */
 public class TodoCommand extends Command {
     private TodoTask task;
 

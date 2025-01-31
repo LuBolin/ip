@@ -5,6 +5,9 @@ import innkeeper.TaskList;
 import innkeeper.Ui;
 import innkeeper.task.Task;
 
+/**
+ * Represents a command to unmark a task as done.
+ */
 public class UnmarkCommand extends Command {
     private int index;
 
