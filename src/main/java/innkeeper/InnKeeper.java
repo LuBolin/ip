@@ -3,19 +3,14 @@ package innkeeper;
 import innkeeper.command.Command;
 import innkeeper.command.Command.TerminationType;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 public class InnKeeper {
     private TaskList tasks;
     private Storage storage;
     private Ui ui;
     private InputParser inputParser;
-    private final String name = "InnKeeper";
+    private final String name = "innkeeper";
 
     public InnKeeper(String filePath){
         this.ui = new Ui();

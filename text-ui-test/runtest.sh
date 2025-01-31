@@ -13,7 +13,7 @@ then
 fi
 
 # compile the code into the bin folder, terminates if error occurred
-if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/InnKeeper.java
+if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/innkeeper/InnKeeper.java
 then
     echo "********** BUILD FAILURE **********"
     exit 1

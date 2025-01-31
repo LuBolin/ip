@@ -1,5 +1,6 @@
 package innkeeper;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Ui {
@@ -49,7 +50,11 @@ public class Ui {
 
     public String readCommand() {
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        try{
+            return scanner.nextLine();
+        } catch (NoSuchElementException | IllegalStateException e){
+            return "bye";
+        }
     }
 
     public void setInitialized(){
