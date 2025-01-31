@@ -1,18 +1,17 @@
-package InnKeeper;
+package innkeeper.task;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 public class DeadlineTask extends Task {
     private String deadlineString;
-    private LocalDateTime deadlineLocalDate;
+    private LocalDate deadlineLocalDate;
 
     public DeadlineTask(String name, String deadline) {
         super(name, Task.TASK_TYPE.DEADLINE);
         this.deadlineString = deadline;
         try {
-            this.deadlineLocalDate = LocalDateTime.parse(deadline);
+            this.deadlineLocalDate = LocalDate.parse(deadline, INPUT_DATE_PARSER);
         } catch (DateTimeParseException e) {
             this.deadlineLocalDate = null;
         }

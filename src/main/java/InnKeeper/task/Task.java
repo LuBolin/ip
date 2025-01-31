@@ -1,4 +1,4 @@
-package InnKeeper;
+package innkeeper.task;
 
 import java.time.format.DateTimeFormatter;
 
@@ -7,7 +7,8 @@ public class Task {
         TODO, DEADLINE, EVENT
     }
 
-    static final String INPUT_DATE_FORMAT = "yyyy-mm-dd";
+    // MM is month, mm is minute
+    public static final String INPUT_DATE_FORMAT = "yyyy-MM-dd";
     static final DateTimeFormatter OUTPUT_DATE_FORMATTER = DateTimeFormatter.ofPattern("MMM d yyyy");
     static final DateTimeFormatter INPUT_DATE_PARSER = DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT);
 
