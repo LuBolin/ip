@@ -5,6 +5,10 @@ import innkeeper.command.Command.TerminationType;
 
 import java.io.IOException;
 
+/**
+ * InnKeeper is a chatbot that helps users to manage their tasks.
+ * It contains the main method to run the chatbot.
+ */
 public class InnKeeper {
     private TaskList tasks;
     private Storage storage;
@@ -12,6 +16,11 @@ public class InnKeeper {
     private InputParser inputParser;
     private final String name = "innkeeper";
 
+    /**
+     * Constructor for InnKeeper.
+     *
+     * @param filePath The file path to save the tasks.
+     */
     public InnKeeper(String filePath){
         this.ui = new Ui();
         this.tasks = new TaskList();
@@ -19,10 +28,18 @@ public class InnKeeper {
         this.storage = new Storage(filePath, this.inputParser);
     }
 
+    /**
+     * Main method to run the chatbot.
+     *
+     * @param args The command line arguments.
+     */
     public static void main(String[] args) {
         new InnKeeper("data/tasks.txt").run();
     }
 
+    /**
+     * Runs the chatbot.
+     */
     public void run(){
         try{
             storage.readTasksFromFile(tasks, storage, ui);

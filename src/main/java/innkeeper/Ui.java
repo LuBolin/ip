@@ -3,10 +3,17 @@ package innkeeper;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * Class in charge of handling user interface.
+ * It prints messages to the user and reads user input.
+ */
 public class Ui {
     private final String LINE_SEPARATOR = "____________________________________________________________";
     private boolean isInitialized = false;
 
+    /**
+     * Prints the greetings message.
+     */
     public void printGreetings() {
         // Generated with https://patorjk.com/software/taag/
         // Font: "Big" (The font is called "Big" on the website)
@@ -29,16 +36,27 @@ public class Ui {
         System.out.println(LINE_SEPARATOR);
     }
 
+    /**
+     * Prints the farewell message.
+     */
     public void printFarewell() {
         System.out.println(LINE_SEPARATOR);
         System.out.println("Farewell, traveller!");
         System.out.println(LINE_SEPARATOR);
     }
 
+    /**
+     * Prints a line separator.
+     */
     public void printLine(){
         System.out.println(LINE_SEPARATOR);
     }
 
+    /**
+     * Prints a message to the user.
+     *
+     * @param message The message to print.
+     */
     public void printMessage(String message) {
         if (!isInitialized){
             return;
@@ -48,6 +66,11 @@ public class Ui {
         System.out.println(LINE_SEPARATOR);
     }
 
+    /**
+     * Reads the user input.
+     *
+     * @return The user input.
+     */
     public String readCommand() {
         Scanner scanner = new Scanner(System.in);
         try{
@@ -57,6 +80,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Sets the Ui as initialized.
+     * This is useful when the Ui is used before the greetings message is printed.
+     * Such as when we are loading tasks from a file using commands.
+     */
     public void setInitialized(){
         isInitialized = true;
     }
