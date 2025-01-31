@@ -2,7 +2,10 @@ package innkeeper.task;
 
 import java.time.format.DateTimeFormatter;
 
-public class Task {
+/**
+ * Abstract class for tasks.
+ */
+public abstract class Task {
     public enum TASK_TYPE {
         TODO, DEADLINE, EVENT
     }
@@ -16,20 +19,32 @@ public class Task {
     boolean isDone;
     TASK_TYPE type;
 
+    /**
+     * Constructor for Task.
+     *
+     * @param name The name / description of the task.
+     * @param type The type of the task.
+     */
     public Task(String name, TASK_TYPE type) {
         this.name = name;
         this.isDone = false;
         this.type = type;
     }
 
-    public Task(String name) {
-        this(name, TASK_TYPE.TODO);
-    }
-
+    /**
+     * Sets if the task is done.
+     *
+     * @param isDone The boolean value to set if the task is done.
+     */
     public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
 
+    /**
+     * Formats the task as a string of the desired format.
+     *
+     * @return The formatted string.
+     */
     @Override
     public String toString() {
         String typeString = "[" + type.name().charAt(0) + "]";
@@ -38,10 +53,11 @@ public class Task {
         return typeString + doneString + " " + nameString;
     }
 
-    public String toFileString() {
-        return toFileString(new String[0]);
-    }
-
+    /**
+     * Formats the task as a string to be written to a file.
+     *
+     * @return The formatted string.
+     */
     public String toFileString(String[] information) {
         String typeString = (type.name().charAt(0) + "").toUpperCase();
         String doneString = isDone ? "1" : "0";
@@ -52,5 +68,16 @@ public class Task {
             sb.append(" | ").append(info);
         }
         return sb.toString();
+    }
+
+    /**
+     * Formats the task as a string to be written to a file.
+     * Used when there is no additional parameters.
+     * Overloads the toFileString(String[] information) method.
+     *
+     * @return The formatted string.
+     */
+    public String toFileString() {
+        return toFileString(new String[0]);
     }
 }

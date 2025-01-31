@@ -13,15 +13,29 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class in charge of reading and writing tasks to a file.
+ */
 public class Storage {
     private final String FILE_PATH;
     private final InputParser inputParser;
 
+    /**
+     * Constructor for Storage.
+     *
+     * @param filePath The file path to save the tasks.
+     * @param inputParser The input parser.
+     */
     public Storage(String filePath, InputParser inputParser){
         this.FILE_PATH = filePath;
         this.inputParser = inputParser;
     }
 
+    /**
+     * Writes the tasks to a file.
+     *
+     * @param userTasks The TaskList object containing  the list of tasks to write to the file.
+     */
     public void writeTasksToFile(TaskList userTasks) {
         // Type | isDone | Description | Other fields
         // check if file exists, if not create it
@@ -54,13 +68,21 @@ public class Storage {
 
     }
 
-    public List<Task> readTasksFromFile(TaskList taskList, Storage storage, Ui ui) throws IOException{
+    /**
+     * Reads the tasks from a file.
+     *
+     * @param taskList The TaskList object to store the tasks.
+     * @param storage The Storage object to write tasks to file.
+     * @param ui The Ui object to interact with the user.
+     * @throws IOException If there is an error reading the file.
+     */
+    public void readTasksFromFile(TaskList taskList, Storage storage, Ui ui) throws IOException{
         // check if file exists, if not just skip
         List<Task> tasks = new ArrayList<Task>();
 
         File file = new File(FILE_PATH);
         if (!file.exists()) {
-            return tasks;
+            return;
         }
 
         BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH));
@@ -99,6 +121,5 @@ public class Storage {
             }
         }
 
-        return tasks;
     }
 }

@@ -6,6 +6,9 @@ import innkeeper.Ui;
 import innkeeper.task.DeadlineTask;
 import innkeeper.task.Task;
 
+/**
+ * Represents a command to add a deadline task.
+ */
 public class DeadlineCommand extends Command {
     private DeadlineTask task;
 

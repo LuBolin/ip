@@ -4,9 +4,13 @@ import innkeeper.Storage;
 import innkeeper.TaskList;
 import innkeeper.Ui;
 import innkeeper.task.Task;
+import innkeeper.task.TodoTask;
 
+/**
+ * Represents a command to add a todo task.
+ */
 public class TodoCommand extends Command {
-    private Task task;
+    private TodoTask task;
 
     @Override
     public TerminationType execute(TaskList tasks, Storage storage, Ui ui) throws Exception {
@@ -24,7 +28,7 @@ public class TodoCommand extends Command {
         if (tokens.length < 2) {
             throw new Exception("Usage: todo <description>");
         }
-        task = new Task(tokens[1]);
+        task = new TodoTask(tokens[1]);
         return this;
     }
 }

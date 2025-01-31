@@ -4,6 +4,9 @@ import innkeeper.Storage;
 import innkeeper.TaskList;
 import innkeeper.Ui;
 
+/**
+ * Represents a command to exit the program.
+ */
 public class ByeCommand extends Command {
     @Override
     public TerminationType execute(TaskList tasks, Storage storage, Ui ui) {

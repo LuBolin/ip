@@ -10,8 +10,18 @@ import innkeeper.command.MarkCommand;
 import innkeeper.command.UnmarkCommand;
 import innkeeper.command.TodoCommand;
 
+/**
+ * Class in charge of parsing user input into commands.
+ */
 public class InputParser {
 
+    /**
+     * Parses the user input into a command.
+     *
+     * @param userInput The user input.
+     * @return The command.
+     * @throws Exception If the user input is invalid.
+     */
     public Command parseUserInput(String userInput) throws Exception{
         // Choose to not use '//d+'
         // As user may just type 'mark' or 'unmark' or 'delete' without any index
@@ -47,6 +57,13 @@ public class InputParser {
         return output;
     }
 
+    /**
+     * Specifically parses the user input into a new task command.
+     *
+     * @param userInput The user input.
+     * @return The command.
+     * @throws Exception If the user input is invalid.
+     */
     private Command parseNewTaskInput(String userInput) throws Exception {
         Command output = null;
 

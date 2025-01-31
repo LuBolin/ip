@@ -5,6 +5,9 @@ import innkeeper.TaskList;
 import innkeeper.Ui;
 import innkeeper.task.Task;
 
+/**
+ * Represents a command to mark a task as done.
+ */
 public class MarkCommand extends Command {
     private int index;
 
