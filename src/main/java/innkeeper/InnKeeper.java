@@ -14,7 +14,6 @@ public class InnKeeper {
     private Storage storage;
     private Ui ui;
     private InputParser inputParser;
-    private final String name = "innkeeper";
 
     /**
      * Constructor for InnKeeper.
