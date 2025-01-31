@@ -1,9 +1,13 @@
 package InnKeeper;
 
+import java.time.format.DateTimeFormatter;
+
 public class Task {
     public enum TASK_TYPE {
         TODO, DEADLINE, EVENT
     }
+
+    static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("MMM d yyyy");
 
     String name;
     boolean isDone;
