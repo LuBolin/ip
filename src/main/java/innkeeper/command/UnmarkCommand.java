@@ -10,8 +10,8 @@ public class UnmarkCommand extends Command {
 
     @Override
     public TerminationType execute(TaskList tasks, Storage storage, Ui ui) {
-        if (index < 1 || tasks.getTaskCount() < index){
-            throw new IndexOutOfBoundsException("There is no task at index " + index + ".");
+        if (index < 0 || tasks.getTaskCount() <= index){
+            throw new IndexOutOfBoundsException("There is no task at index " + (index + 1) + ".");
         }
         Task task = tasks.getTask(index);
         task.setDone(false);
@@ -25,7 +25,7 @@ public class UnmarkCommand extends Command {
         if (tokens.length < 2) {
             throw new Exception("Usage: unmark <index>");
         }
-        index = Integer.parseInt(tokens[1]);
+        index = Integer.parseInt(tokens[1]) - 1;
         return this;
     }
 }
