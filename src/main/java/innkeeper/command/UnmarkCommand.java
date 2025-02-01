@@ -12,14 +12,16 @@ public class UnmarkCommand extends Command {
     private int index;
 
     @Override
-    public TerminationType execute(TaskList tasks, Storage storage, Ui ui) {
+    public CommandOutput execute(TaskList tasks, Storage storage, Ui ui) {
         if (index < 0 || tasks.getTaskCount() <= index){
             throw new IndexOutOfBoundsException("There is no task at index " + (index + 1) + ".");
         }
         Task task = tasks.getTask(index);
         task.setDone(false);
-        ui.printMessage("Ahh, I see. I've unmarked this task as not done:\n" + tasks.getTask(index));
-        return TerminationType.CONTINUE;
+        String message = "Ahh, I see. I've unmarked this task as not done:\n" + tasks.getTask(index);
+        ui.printMessage(message);
+        CommandOutput output = new CommandOutput(TerminationType.CONTINUE, message);
+        return output;
     }
 
     @Override

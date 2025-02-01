@@ -72,11 +72,10 @@ public class Storage {
      * Reads the tasks from a file.
      *
      * @param taskList The TaskList object to store the tasks.
-     * @param storage The Storage object to write tasks to file.
      * @param ui The Ui object to interact with the user.
      * @throws IOException If there is an error reading the file.
      */
-    public void readTasksFromFile(TaskList taskList, Storage storage, Ui ui) throws IOException{
+    public void readTasksFromFile(TaskList taskList, Ui ui) throws IOException{
         // check if file exists, if not just skip
         List<Task> tasks = new ArrayList<Task>();
 
@@ -105,12 +104,12 @@ public class Storage {
                         || newCommand instanceof innkeeper.command.DeadlineCommand
                         || newCommand instanceof innkeeper.command.EventCommand) {
                     try{
-                        newCommand.execute(taskList, storage, ui);
+                        newCommand.execute(taskList, this, ui);
                         if (parts[1].equals("1")) {
                             int index = taskList.getTasks().size() - 1;
                             MarkCommand markCommand = new MarkCommand();
                             markCommand = (MarkCommand) markCommand.parse("mark " + (index + 1));
-                            markCommand.execute(taskList, storage, ui);
+                            markCommand.execute(taskList, this, ui);
                         }
                     } catch (Exception e) {
                         // Ignore the task if it cannot be added

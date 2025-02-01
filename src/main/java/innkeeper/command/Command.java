@@ -24,7 +24,7 @@ public abstract class Command {
      * @return TerminationType Whether the command is a termination command
      * @throws Exception If an error occurs during execution
      */
-    abstract public TerminationType execute(TaskList tasks, Storage storage, Ui ui) throws Exception;
+    abstract public CommandOutput execute(TaskList tasks, Storage storage, Ui ui) throws Exception;
 
     /**
      * Parses the input string and returns the corresponding Command object

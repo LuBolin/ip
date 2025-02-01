@@ -12,7 +12,7 @@ public class DeleteCommand extends Command {
     private int index;
 
     @Override
-    public TerminationType execute(TaskList tasks, Storage storage, Ui ui) throws Exception {
+    public CommandOutput execute(TaskList tasks, Storage storage, Ui ui) throws Exception {
         if (index < 0 || tasks.getTaskCount() <= index){
             throw new IndexOutOfBoundsException("There are only " + tasks.getTaskCount() + " tasks in the list.");
         }
@@ -22,7 +22,8 @@ public class DeleteCommand extends Command {
             + taskToDelete + "\n"
             + "Now you have " + tasks.getTaskCount() + " tasks in the list.";
         ui.printMessage(message);
-        return TerminationType.CONTINUE;
+        CommandOutput output = new CommandOutput(TerminationType.CONTINUE, message);
+        return output;
     }
 
     @Override
