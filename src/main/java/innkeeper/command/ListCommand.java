@@ -12,19 +12,22 @@ import java.util.List;
  */
 public class ListCommand extends Command {
     @Override
-    public TerminationType execute(TaskList tasks, Storage storage, Ui ui) {
+    public CommandOutput execute(TaskList tasks, Storage storage, Ui ui) {
         if (tasks.getTaskCount() == 0) {
-            ui.printMessage("There are no tasks in the list.");
-            return TerminationType.CONTINUE;
+            String message = "There are no tasks in the list.";
+            ui.printMessage(message);
+            CommandOutput output = new CommandOutput(TerminationType.CONTINUE, message);
+            return output;
         }
 
-        StringBuilder output = new StringBuilder("Here are the tasks in your list:\n");
+        StringBuilder message = new StringBuilder("Here are the tasks in your list:\n");
         List<Task> userTasks = tasks.getTasks();
         for (int i = 0; i < userTasks .size(); i++) {
-            output.append((i + 1)).append(". ").append(userTasks.get(i)).append("\n");
+            message.append((i + 1)).append(". ").append(userTasks.get(i)).append("\n");
         }
-        ui.printMessage(output.toString());
-        return TerminationType.CONTINUE;
+        ui.printMessage(message.toString());
+        CommandOutput output = new CommandOutput(TerminationType.CONTINUE, message.toString());
+        return output;
     }
 
     @Override

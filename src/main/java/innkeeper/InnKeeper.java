@@ -2,6 +2,7 @@ package innkeeper;
 
 import innkeeper.command.Command;
 import innkeeper.command.Command.TerminationType;
+import innkeeper.command.CommandOutput;
 
 import java.io.IOException;
 
@@ -25,46 +26,26 @@ public class InnKeeper {
         this.tasks = new TaskList();
         this.inputParser = new InputParser();
         this.storage = new Storage(filePath, this.inputParser);
-    }
-
-    /**
-     * Main method to run the chatbot.
-     *
-     * @param args The command line arguments.
-     */
-    public static void main(String[] args) {
-        new InnKeeper("data/tasks.txt").run();
-    }
-
-    /**
-     * Runs the chatbot.
-     */
-    public void run(){
-        try{
-            storage.readTasksFromFile(tasks, storage, ui);
+        try {
+            storage.readTasksFromFile(this.tasks, this.ui);
         } catch (IOException e) {
-            ui.printMessage("Error when loading saved tasks: " + e.getMessage());
+            ui.printMessage(e.getMessage());
         }
-        ui.setInitialized();
-        
-        ui.printGreetings();
+    }
 
-        boolean isExit = false;
-        while (!isExit){
-            try {
-                String fullCommand = ui.readCommand();
-                ui.printLine(); // show the divider line ("_______")
-                Command c = inputParser.parseUserInput(fullCommand);
-                TerminationType termination = c.execute(tasks, storage, ui);
-                isExit = (termination == TerminationType.TERMINATE);
-            } catch (Exception e) {
-                ui.printMessage(e.getMessage());
-            } finally {
-                ui.printLine();
-            }
+    public CommandOutput getResponse(String input) {
+        try {
+            Command c = inputParser.parseUserInput(input);
+            CommandOutput cmdOutput = c.execute(tasks, storage, ui);
+            return cmdOutput;
+        } catch (Exception e) {
+            CommandOutput output = new CommandOutput(TerminationType.CONTINUE, e.getMessage());
+            ui.printMessage(output.getResponse());
+            return output;
         }
+    }
 
-        // print farewell is handled in ByeCommand
-
+    public String getGreetings(boolean withAsciiArt) {
+        return ui.getGreetings(withAsciiArt);
     }
 }

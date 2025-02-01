@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="innkeeper.MainWindow"
+            prefHeight="640.0" prefWidth="540.0"
+            style="-fx-background-color: #f0f0f0; -fx-font-size: 16pt;"
+            fx:id="root">
+
+    <top>
+        <BorderPane>
+            <center>
+                <Label text="InnKeeper" />
+            </center>
+            <right>
+                <Button fx:id="exitButton" text="Exit" />
+            </right>
+        </BorderPane>
+    </top>
+
+    <center>
+        <ScrollPane fx:id="scrollPane" fitToWidth="true" fitToHeight="true">
+            <content>
+                <VBox fx:id="dialogContainer" spacing="5" style="-fx-padding: 10px;" />
+            </content>
+        </ScrollPane>
+    </center>
+
+    <bottom>
+        <HBox spacing="5">
+            <TextField fx:id="userInput" HBox.hgrow="ALWAYS" />
+            <Button fx:id="sendButton" text="Send" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -9,10 +9,11 @@ import innkeeper.Ui;
  */
 public class ByeCommand extends Command {
     @Override
-    public TerminationType execute(TaskList tasks, Storage storage, Ui ui) {
+    public CommandOutput execute(TaskList tasks, Storage storage, Ui ui) {
         ui.printFarewell();
+        CommandOutput output = new CommandOutput(TerminationType.TERMINATE, "Farewell, traveller!");
         storage.writeTasksToFile(tasks);
-        return TerminationType.TERMINATE;
+        return output;
     }
 
     @Override

@@ -9,16 +9,10 @@ import java.util.Scanner;
  */
 public class Ui {
     private final String LINE_SEPARATOR = "____________________________________________________________";
-    private boolean isInitialized = false;
-
-    /**
-     * Prints the greetings message.
-     */
-    public void printGreetings() {
-        // Generated with https://patorjk.com/software/taag/
-        // Font: "Big" (The font is called "Big" on the website)
-        // Name: InnKeeper
-        String logo = """
+    // Generated with https://patorjk.com/software/taag/
+    // Font: "Big" (The font is called "Big" on the website)
+    // Name: InnKeeper
+    private final String ASCII_LOGO ="""
                  _____             _  __
                 |_   _|           | |/ /                        \s
                   | |  _ __  _ __ | ' / ___  ___ _ __   ___ _ __\s
@@ -28,32 +22,52 @@ public class Ui {
                                                 | |             \s
                                                 |_|             \s
                 """;
-        System.out.println("Hello from\n" + logo);
 
-        System.out.println(LINE_SEPARATOR);
-        System.out.println("Greetings! I'm the InnKeeper.");
-        System.out.println("I can keep track of things for you.");
-        System.out.println(LINE_SEPARATOR);
+    private boolean isInitialized = false;
+
+    /**
+     * Returns the greetings message.
+     */
+    public String getGreetings(boolean withAsciiArt) {
+        // Stopped using ascii art
+        // as it only looks good in console and looks bad in JavaFX
+        String message = "";
+        if (withAsciiArt){
+            message += ASCII_LOGO + "\n";
+        }
+        message += "Greetings! I'm the InnKeeper.\n" +
+                "I can keep track of things for you.\n";
+        return message;
     }
 
     /**
-     * Prints the farewell message.
+     * Prints the greetings message and returns it as a string.
+     */
+    public void printGreetings() {
+        boolean withAsciiArt = true;
+        String message = LINE_SEPARATOR;
+        message += getGreetings(withAsciiArt);
+        message += LINE_SEPARATOR;
+        System.out.println(message);
+    }
+
+    /**
+     * Prints the farewell message and returns it as a string.
      */
     public void printFarewell() {
-        System.out.println(LINE_SEPARATOR);
-        System.out.println("Farewell, traveller!");
-        System.out.println(LINE_SEPARATOR);
+        String message = LINE_SEPARATOR + "\n" + "Farewell, traveller!" + "\n" + LINE_SEPARATOR;
+        System.out.println(message);
     }
 
     /**
-     * Prints a line separator.
+     * Prints a line separator and returns it as a string.
      */
     public void printLine(){
         System.out.println(LINE_SEPARATOR);
     }
 
     /**
-     * Prints a message to the user.
+     * Prints a message to the user and returns it as a string.
      *
      * @param message The message to print.
      */
@@ -61,9 +75,8 @@ public class Ui {
         if (!isInitialized){
             return;
         }
-        System.out.println(LINE_SEPARATOR);
-        System.out.println(message);
-        System.out.println(LINE_SEPARATOR);
+        String formattedMessage = LINE_SEPARATOR + "\n" + message + "\n" + LINE_SEPARATOR;
+        System.out.println(formattedMessage);
     }
 
     /**

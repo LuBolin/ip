@@ -14,21 +14,22 @@ public class FindCommand extends Command {
     private String keyword;
 
     @Override
-    public TerminationType execute(TaskList tasks, Storage storage, Ui ui) {
-        StringBuilder output = new StringBuilder("Here are the matching tasks in your list:\n");
+    public CommandOutput execute(TaskList tasks, Storage storage, Ui ui) {
+        StringBuilder message = new StringBuilder("Here are the matching tasks in your list:\n");
         List<Task> userTasks = tasks.getTasks();
         boolean found = false;
         for (int i = 0; i < userTasks .size(); i++) {
             if (userTasks.get(i).toString().contains(keyword)) {
                 found = true;
-                output.append((i + 1)).append(". ").append(userTasks.get(i)).append("\n");
+                message.append((i + 1)).append(". ").append(userTasks.get(i)).append("\n");
             }
         }
         if (!found) {
-            output = new StringBuilder("There are no tasks in the list that match the keyword.");
+            message = new StringBuilder("There are no tasks in the list that match the keyword.");
         }
-        ui.printMessage(output.toString());
-        return TerminationType.CONTINUE;
+        ui.printMessage(message.toString());
+        CommandOutput output = new CommandOutput(TerminationType.CONTINUE, message.toString());
+        return output;
     }
 
     @Override

@@ -13,13 +13,14 @@ public class DeadlineCommand extends Command {
     private DeadlineTask task;
 
     @Override
-    public TerminationType execute(TaskList tasks, Storage storage, Ui ui) throws Exception {
+    public CommandOutput execute(TaskList tasks, Storage storage, Ui ui) throws Exception {
         tasks.addTask(task);
         String message = "Got it. I've added this task:\n"
             + task + "\n"
             + "Now you have " + tasks.getTaskCount() + " tasks in the list.";
         ui.printMessage(message);
-        return TerminationType.CONTINUE;
+        CommandOutput output = new CommandOutput(TerminationType.CONTINUE, message);
+        return output;
     }
 
     @Override
