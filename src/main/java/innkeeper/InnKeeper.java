@@ -63,8 +63,5 @@ public class InnKeeper {
                 ui.printLine();
             }
         }
-
-        // print farewell is handled in ByeCommand
-
     }
 }
