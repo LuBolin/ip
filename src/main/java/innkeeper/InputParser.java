@@ -6,6 +6,7 @@ import innkeeper.command.DeadlineCommand;
 import innkeeper.command.DeleteCommand;
 import innkeeper.command.EventCommand;
 import innkeeper.command.FindCommand;
+import innkeeper.command.FuzzyFindCommand;
 import innkeeper.command.ListCommand;
 import innkeeper.command.MarkCommand;
 import innkeeper.command.TodoCommand;
@@ -51,12 +52,15 @@ public class InputParser {
             output = new DeleteCommand().parse(userInput);
         } else if (userInput.matches(newTaskRegex)) { // Add a new task
             output = parseNewTaskInput(userInput);
+        } else if (userInput.startsWith("fuzzyfind") || userInput.startsWith("ffind")) {
+            output = new FuzzyFindCommand().parse(userInput);
         } else if (userInput.startsWith("find")) {
             output = new FindCommand().parse(userInput);
-        } else {
+        }
+        else {
             String exceptionMessage = "I'm sorry, but I don't know what that means.\n"
                     + "Task types: todo, deadline, event.\n"
-                    + "Other commands: list, find, delete, mark, unmark.\n"
+                    + "Other commands: list, find, fuzzyfind (ffind), delete, mark, unmark.\n"
                     + "If you are leaving, just say \"bye\".";
             throw new IllegalArgumentException(exceptionMessage);
         }
