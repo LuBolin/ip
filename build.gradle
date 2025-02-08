@@ -2,6 +2,11 @@ plugins {
     id 'java'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'checkstyle'
+}
+
+checkstyle {
+    toolVersion = '10.2'
 }
 
 repositories {
@@ -43,7 +48,7 @@ test {
 }
 
 application {
-    mainClass.set("innkeeper.InnKeeper")
+    mainClass.set("innkeeper.Launcher")
 }
 
 shadowJar {
