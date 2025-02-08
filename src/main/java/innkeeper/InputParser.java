@@ -1,15 +1,15 @@
 package innkeeper;
 
-import innkeeper.command.Command;
 import innkeeper.command.ByeCommand;
+import innkeeper.command.Command;
 import innkeeper.command.DeadlineCommand;
 import innkeeper.command.DeleteCommand;
 import innkeeper.command.EventCommand;
 import innkeeper.command.FindCommand;
 import innkeeper.command.ListCommand;
 import innkeeper.command.MarkCommand;
-import innkeeper.command.UnmarkCommand;
 import innkeeper.command.TodoCommand;
+import innkeeper.command.UnmarkCommand;
 
 /**
  * Class in charge of parsing user input into commands.
@@ -23,7 +23,7 @@ public class InputParser {
      * @return The command.
      * @throws Exception If the user input is invalid.
      */
-    public Command parseUserInput(String userInput) throws Exception{
+    public Command parseUserInput(String userInput) throws Exception {
 
         assert userInput != null : "User input string should not be null";
 
@@ -42,19 +42,18 @@ public class InputParser {
             output = new ListCommand().parse(userInput);
         } else if (userInput.matches(markAndUnmarkRegex)) {
             boolean isMark = userInput.startsWith("mark");
-            if (isMark){
+            if (isMark) {
                 output = new MarkCommand().parse(userInput);
             } else {
                 output = new UnmarkCommand().parse(userInput);
             }
         } else if (userInput.matches(deleteRegex)) {
             output = new DeleteCommand().parse(userInput);
-        } else if (userInput.matches(newTaskRegex)){ // Add a new task
+        } else if (userInput.matches(newTaskRegex)) { // Add a new task
             output = parseNewTaskInput(userInput);
         } else if (userInput.startsWith("find")) {
             output = new FindCommand().parse(userInput);
-        }
-        else {
+        } else {
             String exceptionMessage = "I'm sorry, but I don't know what that means.\n"
                     + "Task types: todo, deadline, event.\n"
                     + "Other commands: list, find, delete, mark, unmark.\n"
@@ -77,7 +76,7 @@ public class InputParser {
         if (userInput.startsWith("todo")) {
             output = new TodoCommand().parse(userInput);
         } else if (userInput.startsWith("deadline")) {
-           output = new DeadlineCommand().parse(userInput);
+            output = new DeadlineCommand().parse(userInput);
         } else if (userInput.startsWith("event")) {
             output = new EventCommand().parse(userInput);
         }

@@ -23,12 +23,12 @@ public class EventTask extends Task {
         this.startDateString = startDatetime;
         this.endDateString = endDatetime;
         try {
-            this.startDateLocalDate = LocalDate.parse(startDatetime, INPUT_DATE_PARSER);
+            this.startDateLocalDate = LocalDate.parse(startDatetime, getInputDateParser());
         } catch (Exception e) {
             this.startDateLocalDate = null;
         }
         try {
-            this.endDateLocalDate = LocalDate.parse(endDatetime, INPUT_DATE_PARSER);
+            this.endDateLocalDate = LocalDate.parse(endDatetime, getInputDateParser());
         } catch (Exception e) {
             this.endDateLocalDate = null;
         }
@@ -40,12 +40,12 @@ public class EventTask extends Task {
         String startDateFormattedString;
         String endDateFormattedString;
         if (startDateLocalDate != null) {
-            startDateFormattedString = startDateLocalDate.format(Task.OUTPUT_DATE_FORMATTER);
+            startDateFormattedString = startDateLocalDate.format(getOutputDateFormatter());
         } else {
             startDateFormattedString = startDateString;
         }
         if (endDateLocalDate != null) {
-            endDateFormattedString = endDateLocalDate.format(Task.OUTPUT_DATE_FORMATTER);
+            endDateFormattedString = endDateLocalDate.format(getOutputDateFormatter());
         } else {
             endDateFormattedString = endDateString;
         }

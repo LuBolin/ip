@@ -1,5 +1,8 @@
 package innkeeper;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import innkeeper.command.Command;
 import innkeeper.command.CommandOutput;
 import javafx.fxml.FXML;
@@ -7,12 +10,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.VBox;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
+/**
+ * Controller for MainWindow. Binds the other controls.
+ */
 public class MainWindow extends BorderPane {
 
     @FXML
@@ -33,7 +36,7 @@ public class MainWindow extends BorderPane {
 
 
     private InnKeeper innKeeper;
-    boolean hasStopped = false;
+    private boolean hasStopped = false;
 
     /**
      * Initializes the MainWindow.

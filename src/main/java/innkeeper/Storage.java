@@ -1,10 +1,5 @@
 package innkeeper;
 
-import innkeeper.command.Command;
-import innkeeper.command.MarkCommand;
-import innkeeper.command.TodoCommand;
-import innkeeper.task.Task;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -12,6 +7,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+
+import innkeeper.command.Command;
+import innkeeper.command.MarkCommand;
+import innkeeper.command.TodoCommand;
+import innkeeper.task.Task;
 
 /**
  * Class in charge of reading and writing tasks to a file.
@@ -26,7 +26,7 @@ public class Storage {
      * @param filePath The file path to save the tasks.
      * @param inputParser The input parser.
      */
-    public Storage(String filePath, InputParser inputParser){
+    public Storage(String filePath, InputParser inputParser) {
         this.FILE_PATH = filePath;
         this.inputParser = inputParser;
     }
@@ -47,7 +47,7 @@ public class Storage {
                 boolean success = true;
                 if (!parentDir.exists()) {
                     success = parentDir.mkdirs();
-                    if (success){
+                    if (success) {
                         success = file.createNewFile();
                     }
                 }
@@ -78,7 +78,7 @@ public class Storage {
      * @param ui The Ui object to interact with the user.
      * @throws IOException If there is an error reading the file.
      */
-    public void readTasksFromFile(TaskList taskList, Ui ui) throws IOException{
+    public void readTasksFromFile(TaskList taskList, Ui ui) throws IOException {
         // check if file exists, if not just skip
         List<Task> tasks = new ArrayList<Task>();
 
@@ -98,7 +98,8 @@ public class Storage {
             case "T" -> userInput = "todo " + parts[2];
             case "D" -> userInput = "deadline " + parts[2] + " /by " + parts[3];
             case "E" -> userInput = "event " + parts[2] + " /from " + parts[3] + " /to " + parts[4];
-            default -> {continue;}
+            default -> {
+                continue; }
             }
             try {
                 Command newCommand = inputParser.parseUserInput(userInput);
@@ -106,7 +107,7 @@ public class Storage {
                 if (newCommand instanceof TodoCommand
                         || newCommand instanceof innkeeper.command.DeadlineCommand
                         || newCommand instanceof innkeeper.command.EventCommand) {
-                    try{
+                    try {
                         newCommand.execute(taskList, this, ui);
                         if (parts[1].equals("1")) {
                             int index = taskList.getTasks().size() - 1;

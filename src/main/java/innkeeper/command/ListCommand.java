@@ -1,11 +1,11 @@
 package innkeeper.command;
 
+import java.util.List;
+
 import innkeeper.Storage;
 import innkeeper.TaskList;
 import innkeeper.Ui;
 import innkeeper.task.Task;
-
-import java.util.List;
 
 /**
  * Represents a command to list all tasks.
@@ -22,7 +22,7 @@ public class ListCommand extends Command {
 
         StringBuilder message = new StringBuilder("Here are the tasks in your list:\n");
         List<Task> userTasks = tasks.getTasks();
-        for (int i = 0; i < userTasks .size(); i++) {
+        for (int i = 0; i < userTasks.size(); i++) {
             message.append((i + 1)).append(". ").append(userTasks.get(i)).append("\n");
         }
         ui.printMessage(message.toString());

@@ -6,18 +6,21 @@ import java.time.format.DateTimeFormatter;
  * Abstract class for tasks.
  */
 public abstract class Task {
+    /**
+     * Enum for the type of task.
+     */
     public enum TASK_TYPE {
         TODO, DEADLINE, EVENT
     }
 
     // MM is month, mm is minute
     public static final String INPUT_DATE_FORMAT = "yyyy-MM-dd";
-    static final DateTimeFormatter OUTPUT_DATE_FORMATTER = DateTimeFormatter.ofPattern("MMM d yyyy");
-    static final DateTimeFormatter INPUT_DATE_PARSER = DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT);
+    private static final DateTimeFormatter OUTPUT_DATE_FORMATTER = DateTimeFormatter.ofPattern("MMM d yyyy");
+    private static final DateTimeFormatter INPUT_DATE_PARSER = DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT);
 
-    String name;
-    boolean isDone;
-    TASK_TYPE type;
+    private String name;
+    private boolean isDone;
+    private TASK_TYPE type;
 
     /**
      * Constructor for Task.
@@ -79,5 +82,13 @@ public abstract class Task {
      */
     public String toFileString() {
         return toFileString(new String[0]);
+    }
+
+    static DateTimeFormatter getOutputDateFormatter() {
+        return OUTPUT_DATE_FORMATTER;
+    }
+
+    static DateTimeFormatter getInputDateParser() {
+        return INPUT_DATE_PARSER;
     }
 }

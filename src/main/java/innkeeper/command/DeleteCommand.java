@@ -13,7 +13,7 @@ public class DeleteCommand extends Command {
 
     @Override
     public CommandOutput execute(TaskList tasks, Storage storage, Ui ui) throws Exception {
-        if (index < 0 || tasks.getTaskCount() <= index){
+        if (index < 0 || tasks.getTaskCount() <= index) {
             throw new IndexOutOfBoundsException("There are only " + tasks.getTaskCount() + " tasks in the list.");
         }
         Task taskToDelete = tasks.getTask(index);

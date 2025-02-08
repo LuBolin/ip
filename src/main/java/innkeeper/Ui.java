@@ -12,7 +12,7 @@ public class Ui {
     // Generated with https://patorjk.com/software/taag/
     // Font: "Big" (The font is called "Big" on the website)
     // Name: InnKeeper
-    private final String ASCII_LOGO ="""
+    private final String ASCII_LOGO = """
                  _____             _  __
                 |_   _|           | |/ /                        \s
                   | |  _ __  _ __ | ' / ___  ___ _ __   ___ _ __\s
@@ -32,11 +32,11 @@ public class Ui {
         // Stopped using ascii art
         // as it only looks good in console and looks bad in JavaFX
         String message = "";
-        if (withAsciiArt){
+        if (withAsciiArt) {
             message += ASCII_LOGO + "\n";
         }
-        message += "Greetings! I'm the InnKeeper.\n" +
-                "I can keep track of things for you.\n";
+        message += "Greetings! I'm the InnKeeper.\n"
+                + "I can keep track of things for you.\n";
         return message;
     }
 
@@ -62,7 +62,7 @@ public class Ui {
     /**
      * Prints a line separator and returns it as a string.
      */
-    public void printLine(){
+    public void printLine() {
         System.out.println(LINE_SEPARATOR);
     }
 
@@ -72,7 +72,7 @@ public class Ui {
      * @param message The message to print.
      */
     public void printMessage(String message) {
-        if (!isInitialized){
+        if (!isInitialized) {
             return;
         }
         String formattedMessage = LINE_SEPARATOR + "\n" + message + "\n" + LINE_SEPARATOR;
@@ -86,9 +86,9 @@ public class Ui {
      */
     public String readCommand() {
         Scanner scanner = new Scanner(System.in);
-        try{
+        try {
             return scanner.nextLine();
-        } catch (NoSuchElementException | IllegalStateException e){
+        } catch (NoSuchElementException | IllegalStateException e) {
             return "bye";
         }
     }
@@ -98,7 +98,7 @@ public class Ui {
      * This is useful when the Ui is used before the greetings message is printed.
      * Such as when we are loading tasks from a file using commands.
      */
-    public void setInitialized(){
+    public void setInitialized() {
         isInitialized = true;
     }
 }
