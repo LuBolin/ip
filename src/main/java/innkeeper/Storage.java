@@ -57,6 +57,9 @@ public class Storage {
                     return;
                 }
             }
+
+            assert file.exists() : "File should exist at this point";
+
             PrintWriter writer = new PrintWriter(FILE_PATH);
             for (Task task : userTasks.getTasks()) {
                 writer.println(task.toFileString());

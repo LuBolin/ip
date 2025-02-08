@@ -24,6 +24,9 @@ public class InputParser {
      * @throws Exception If the user input is invalid.
      */
     public Command parseUserInput(String userInput) throws Exception {
+
+        assert userInput != null : "User input string should not be null";
+
         // Choose to not use '//d+'
         // As user may just type 'mark' or 'unmark' or 'delete' without any index
         // And we want to still instruct them to input an index
