@@ -3,11 +3,14 @@ package innkeeper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
+/**
+ * A GUI for InnKeeper using FXML.
+ */
 public class Main extends Application {
-    final String FILE_PATH = "data/tasks.txt";
+    private final String FILE_PATH = "data/tasks.txt";
     private InnKeeper innKeeper = new InnKeeper(FILE_PATH);
     @Override
     public void start(Stage stage) {

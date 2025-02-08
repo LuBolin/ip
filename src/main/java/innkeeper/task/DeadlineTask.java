@@ -20,7 +20,7 @@ public class DeadlineTask extends Task {
         super(name, Task.TASK_TYPE.DEADLINE);
         this.deadlineString = deadline;
         try {
-            this.deadlineLocalDate = LocalDate.parse(deadline, INPUT_DATE_PARSER);
+            this.deadlineLocalDate = LocalDate.parse(deadline, getInputDateParser());
         } catch (DateTimeParseException e) {
             this.deadlineLocalDate = null;
         }
@@ -31,7 +31,7 @@ public class DeadlineTask extends Task {
         String defaultString = super.toString();
         String deadlineFormattedString;
         if (deadlineLocalDate != null) {
-            deadlineFormattedString = "(by: " + deadlineLocalDate.format(Task.OUTPUT_DATE_FORMATTER) + ")";
+            deadlineFormattedString = "(by: " + deadlineLocalDate.format(getOutputDateFormatter()) + ")";
         } else {
             deadlineFormattedString = "(by: " + deadlineString + ")";
         }

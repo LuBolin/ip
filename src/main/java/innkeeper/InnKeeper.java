@@ -1,10 +1,11 @@
 package innkeeper;
 
+import java.io.IOException;
+
 import innkeeper.command.Command;
 import innkeeper.command.Command.TerminationType;
 import innkeeper.command.CommandOutput;
 
-import java.io.IOException;
 
 /**
  * InnKeeper is a chatbot that helps users to manage their tasks.
@@ -21,7 +22,7 @@ public class InnKeeper {
      *
      * @param filePath The file path to save the tasks.
      */
-    public InnKeeper(String filePath){
+    public InnKeeper(String filePath) {
         this.ui = new Ui();
         this.tasks = new TaskList();
         this.inputParser = new InputParser();

@@ -8,8 +8,10 @@ import innkeeper.Ui;
  * Abstract class for all commands.
  * Represents a command that can be executed by the user.
  */
-
 public abstract class Command {
+    /**
+     * Enum for the termination type of the command
+     */
     public enum TerminationType {
         TERMINATE,
         CONTINUE
@@ -24,7 +26,7 @@ public abstract class Command {
      * @return TerminationType Whether the command is a termination command
      * @throws Exception If an error occurs during execution
      */
-    abstract public CommandOutput execute(TaskList tasks, Storage storage, Ui ui) throws Exception;
+    public abstract CommandOutput execute(TaskList tasks, Storage storage, Ui ui) throws Exception;
 
     /**
      * Parses the input string and returns the corresponding Command object
@@ -33,5 +35,5 @@ public abstract class Command {
      * @return Command A Command object
      * @throws Exception If the input string is invalid
      */
-    abstract public Command parse(String input) throws Exception;
+    public abstract Command parse(String input) throws Exception;
 }

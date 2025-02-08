@@ -3,7 +3,6 @@ package innkeeper.command;
 import innkeeper.Storage;
 import innkeeper.TaskList;
 import innkeeper.Ui;
-import innkeeper.task.DeadlineTask;
 import innkeeper.task.EventTask;
 import innkeeper.task.Task;
 

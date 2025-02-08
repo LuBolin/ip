@@ -1,9 +1,11 @@
 package innkeeper;
 
-import innkeeper.task.Task;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import innkeeper.task.Task;
+
+
 
 /**
  * Class in charge of storing tasks.
@@ -28,8 +30,8 @@ public class TaskList {
     public void addTask(Task newTask) throws ListFullException {
         String output = "";
         if (userTasks.size() >= MAX_LIST_SIZE) {
-            String message = "My notebook is full! I can't add any more notes.\n" +
-                    "My old brain can only remember up to " + MAX_LIST_SIZE + " tasks.";
+            String message = "My notebook is full! I can't add any more notes.\n"
+                    + "My old brain can only remember up to " + MAX_LIST_SIZE + " tasks.";
             throw new ListFullException(message);
         }
         userTasks.add(newTask);
@@ -40,7 +42,7 @@ public class TaskList {
      *
      * @param index The index of the task to be deleted.
      */
-    public void deleteTask(int index){
+    public void deleteTask(int index) {
         Task removedTask = userTasks.remove(index);
     }
 

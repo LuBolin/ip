@@ -13,7 +13,7 @@ public class MarkCommand extends Command {
 
     @Override
     public CommandOutput execute(TaskList tasks, Storage storage, Ui ui) {
-        if (index < 0 || tasks.getTaskCount() <= index){
+        if (index < 0 || tasks.getTaskCount() <= index) {
             throw new IndexOutOfBoundsException("There is no task at index " + (index + 1) + ".");
         }
         Task task = tasks.getTask(index);

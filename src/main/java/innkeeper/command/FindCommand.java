@@ -1,11 +1,12 @@
 package innkeeper.command;
 
+import java.util.List;
+
 import innkeeper.Storage;
 import innkeeper.TaskList;
 import innkeeper.Ui;
 import innkeeper.task.Task;
 
-import java.util.List;
 
 /**
  * Represents a command to find tasks that contain a keyword.
@@ -18,7 +19,7 @@ public class FindCommand extends Command {
         StringBuilder message = new StringBuilder("Here are the matching tasks in your list:\n");
         List<Task> userTasks = tasks.getTasks();
         boolean found = false;
-        for (int i = 0; i < userTasks .size(); i++) {
+        for (int i = 0; i < userTasks.size(); i++) {
             if (userTasks.get(i).toString().contains(keyword)) {
                 found = true;
                 message.append((i + 1)).append(". ").append(userTasks.get(i)).append("\n");
