@@ -1,13 +1,13 @@
 package innkeeper.command;
 
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import innkeeper.Storage;
 import innkeeper.TaskList;
 import innkeeper.Ui;
 import innkeeper.task.DeadlineTask;
-import innkeeper.task.Task;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DeadlineCommandTest {
     @Test
