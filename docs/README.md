@@ -59,6 +59,7 @@ You can unmark a task as done using
 You can delete a task using
 `delete (task number)`
 
+
 ## Finding tasks
 1. Normal find
 You can find tasks that contain a specific keyword.
@@ -69,3 +70,8 @@ Example: `find (keyword)`
 You can find tasks that partially match a keyword.
 You will input a keyword and a percentage match, and the Innkeeper would find all tasks which contains at least that much percent of your keyword.
 Example: `fuzzyfind (keyword) (percentage)`
+
+
+## Close
+To close the Innkeeper, you can click "Exit" in the top right corner.
+Alternatively, you can type `bye` to close the Innkeeper.
