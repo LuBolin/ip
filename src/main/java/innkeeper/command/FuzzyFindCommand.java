@@ -20,19 +20,19 @@ public class FuzzyFindCommand extends Command {
     public CommandOutput execute(TaskList tasks, Storage storage, Ui ui) {
         StringBuilder message = new StringBuilder("Here are the matching tasks in your list:\n");
         List<Task> userTasks = tasks.getTasks();
-        boolean found = false;
+        boolean hasFound = false;
         // round to nearest character count, not up and not down
         int subLength = (int) Math.round(keyword.length() * matchPercentage / 100.0);
 
         for (int i = 0; i < userTasks.size(); i++) {
             String taskStr = userTasks.get(i).toString().toLowerCase();
             if (containsSubstringMatch(keyword, taskStr, subLength)) {
-                found = true;
+                hasFound = true;
                 message.append((i + 1)).append(". ").append(userTasks.get(i)).append("\n");
             }
 
         }
-        if (!found) {
+        if (!hasFound) {
             message = new StringBuilder("There are no tasks in the list that match the keyword.");
         }
         ui.printMessage(message.toString());

@@ -58,9 +58,9 @@ public class MainWindow extends BorderPane {
     public void setInnKeeper(InnKeeper innKeeper) {
         this.innKeeper = innKeeper;
         // add welcome message
-        boolean withAsciiArt = false;
+        boolean isWithAsciiArt = false;
         dialogContainer.getChildren().add(
-                DialogBox.getDukeDialog(innKeeper.getGreetings(withAsciiArt), keeperImage)
+                DialogBox.getDukeDialog(innKeeper.getGreetings(isWithAsciiArt), keeperImage)
         );
     }
 

@@ -28,11 +28,11 @@ public class Ui {
     /**
      * Returns the greetings message.
      */
-    public String getGreetings(boolean withAsciiArt) {
+    public String getGreetings(boolean isWithAsciiArt) {
         // Stopped using ascii art
         // as it only looks good in console and looks bad in JavaFX
         String message = "";
-        if (withAsciiArt) {
+        if (isWithAsciiArt) {
             message += ASCII_LOGO + "\n";
         }
         message += "Greetings! I'm the InnKeeper.\n"
@@ -44,9 +44,9 @@ public class Ui {
      * Prints the greetings message and returns it as a string.
      */
     public void printGreetings() {
-        boolean withAsciiArt = true;
+        boolean isWithAsciiArt = true;
         String message = LINE_SEPARATOR;
-        message += getGreetings(withAsciiArt);
+        message += getGreetings(isWithAsciiArt);
         message += LINE_SEPARATOR;
         System.out.println(message);
     }

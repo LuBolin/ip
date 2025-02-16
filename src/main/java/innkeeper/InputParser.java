@@ -56,8 +56,7 @@ public class InputParser {
             output = new FuzzyFindCommand().parse(userInput);
         } else if (userInput.startsWith("find")) {
             output = new FindCommand().parse(userInput);
-        }
-        else {
+        } else {
             String exceptionMessage = "I'm sorry, but I don't know what that means.\n"
                     + "Task types: todo, deadline, event.\n"
                     + "Other commands: list, find, fuzzyfind (ffind), delete, mark, unmark.\n"
@@ -68,10 +67,10 @@ public class InputParser {
     }
 
     /**
-     * Specifically parses the user input into a new task command.
+     * Parses the user input into a new task command.
      *
      * @param userInput The user input.
-     * @return The command.
+     * @return A command object representing the parsed new task command.
      * @throws Exception If the user input is invalid.
      */
     private Command parseNewTaskInput(String userInput) throws Exception {

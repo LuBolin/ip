@@ -44,14 +44,14 @@ public class Storage {
             File file = new File(FILE_PATH);
             if (!file.exists()) {
                 File parentDir = file.getParentFile();
-                boolean success = true;
+                boolean isSuccess = true;
                 if (!parentDir.exists()) {
-                    success = parentDir.mkdirs();
-                    if (success) {
-                        success = file.createNewFile();
+                    isSuccess = parentDir.mkdirs();
+                    if (isSuccess) {
+                        isSuccess = file.createNewFile();
                     }
                 }
-                if (!success) {
+                if (!isSuccess) {
                     System.out.println("Failed to write to file " + FILE_PATH);
                     System.out.println("File not found and could not creat it.");
                     return;
