@@ -19,6 +19,11 @@ dependencies {
 
     String javaFxVersion = '17.0.7'
 
+    // The following warning issued by Java runtime can be ignored.
+    // This warning appears when you use a later JavaFX version (e.g., 17) with a JDK version
+    // that doesn't support the modules feature yet (e.g., Java 11).
+    // || WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @... ||
+
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'linux'
